@@ -68,6 +68,8 @@ public class BookController {
              Book updatedBookData = oldBookData.get();
              updatedBookData.setTitle(newBookData.getTitle());
              updatedBookData.setAuthor(newBookData.getAuthor());
+             updatedBookData.setPublicationYear(newBookData.getPublicationYear());
+             updatedBookData.setGenre(newBookData.getGenre());
 
              Book bookObj = bookRepo.save(updatedBookData);
              return new ResponseEntity<>(bookObj, HttpStatus.OK);
