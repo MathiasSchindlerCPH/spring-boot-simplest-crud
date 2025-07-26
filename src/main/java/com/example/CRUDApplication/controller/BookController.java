@@ -22,7 +22,7 @@ public class BookController {
         try {
             List<Book> bookList = new ArrayList<>();
             bookRepo.findAll().forEach(bookList::add);
-//            bookList.addAll(bookRepo.findAll());
+            // bookList.addAll(bookRepo.findAll());
 
             if (bookList.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -49,6 +49,13 @@ public class BookController {
     @PostMapping("/addBook")
     public ResponseEntity<Book> addBook(@RequestBody Book book) {
         Book bookObj = bookRepo.save(book);
+
+        return new ResponseEntity<>(bookObj, HttpStatus.OK);
+    }
+    
+    @PostMapping("/addBooks")
+    public ResponseEntity<List<Book>> addBook(@RequestBody List<Book> bookList) {
+        List<Book> bookObj = bookRepo.saveAll(bookList);
 
         return new ResponseEntity<>(bookObj, HttpStatus.OK);
     }
